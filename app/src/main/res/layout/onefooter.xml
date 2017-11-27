@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y150"
+    android:layout_alignParentBottom="true"
+    android:padding="@dimen/x20">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/tjimg"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/y70"
+            android:src="@mipmap/otjselected" />
+        <TextView
+            android:id="@+id/tvtj"
+            android:textColor="@color/blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="推荐" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/dzimg"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/y70"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/odznormal" />
+
+        <TextView
+            android:id="@+id/tvdz"
+            android:textColor="@color/hui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="段子" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/spimg"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/y70"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ospnormal" />
+
+        <TextView
+            android:id="@+id/tvsp"
+            android:textColor="@color/hui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视频" />
+    </LinearLayout>
+
+</LinearLayout>

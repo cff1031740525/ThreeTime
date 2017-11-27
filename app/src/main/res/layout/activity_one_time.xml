@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="test.bwei.com.platform.activity.OneTimeActivity">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/oneheader"></include>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/include1"
+        android:layout_below="@id/include2"></FrameLayout>
+
+    <include
+        android:id="@+id/include1"
+        layout="@layout/onefooter"></include>
+</RelativeLayout>

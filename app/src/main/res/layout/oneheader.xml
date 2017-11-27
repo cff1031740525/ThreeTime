@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y90"
+    android:layout_alignParentTop="true"
+    android:background="@color/blue">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/fiv"
+        android:layout_width="@dimen/x70"
+        android:layout_height="@dimen/x70"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x20"
+        android:src="@mipmap/choubi"
+        fresco:placeholderImage="@mipmap/choubi"
+        fresco:roundedCornerRadius="@dimen/x30" />
+
+    <TextView
+        android:id="@+id/maintitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="推荐"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x40" />
+
+    <ImageView
+        android:id="@+id/bj"
+        android:layout_width="@dimen/x50"
+        android:layout_height="@dimen/x50"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x20"
+        android:src="@mipmap/bj" />
+</RelativeLayout>
