@@ -1,8 +1,14 @@
 package test.bwei.com.platform.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.List;
+
+import test.bwei.com.platform.R;
 
 /**
  * Author:Chen
@@ -12,9 +18,19 @@ import android.view.ViewGroup;
  */
 
 public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder>{
+    private Context context;
+ //   private List<String> list;
+
+
+    public RMGZAdapter(Context context) {
+        this.context = context;
+    }
+
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View view= LayoutInflater.from(context).inflate(R.layout.rmgz_adapter,null);
+        myViewHolder myViewHolder=new myViewHolder(view);
+        return myViewHolder;
     }
 
     @Override
@@ -24,7 +40,7 @@ public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 40;
     }
 
     class myViewHolder extends RecyclerView.ViewHolder{

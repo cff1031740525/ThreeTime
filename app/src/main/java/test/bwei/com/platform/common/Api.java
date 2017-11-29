@@ -15,6 +15,7 @@ public class Api {
     public static final String USERINFO="user/getUserInfo";
     public static final String PUBLISHJOKE="quarter/publishJoke";
     public static final String PUBLISHVIDEO="quarter/publishVideo";
+    public static final String GETJOKES="quarter/getJokes";
 
 
 }

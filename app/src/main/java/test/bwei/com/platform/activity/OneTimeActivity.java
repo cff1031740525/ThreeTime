@@ -42,6 +42,7 @@ public class OneTimeActivity extends BaseActivity<MainPresenter> implements Main
     private TextView tvsp;
     private SimpleDraweeView icon;
     private SlidingMenu menu;
+    private FragmentTransaction fragmentTransactions;
 
     @Override
     public int getLayoutId() {
@@ -93,13 +94,16 @@ public class OneTimeActivity extends BaseActivity<MainPresenter> implements Main
     @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View v) {
-
+        fragmentTransactions = getSupportFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.fiv:
                 menu.showMenu();
 
                 break;
             case R.id.bj:
+
+
+
                 break;
             case R.id.tjimg:
                 title.setText("推荐");

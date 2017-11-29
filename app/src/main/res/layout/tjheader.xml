@@ -3,9 +3,6 @@
     android:layout_width="match_parent"
 
     android:layout_height="wrap_content">
-
-
-
     <com.stx.xhb.xbanner.XBanner
         android:id="@+id/xbanner"
         android:layout_width="match_parent"

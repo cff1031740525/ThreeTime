@@ -1,4 +1,4 @@
-package test.bwei.com.platform.bean;
+package test.bwei.com.platform.jsonbean;
 
 /**
  * Author:Chen
