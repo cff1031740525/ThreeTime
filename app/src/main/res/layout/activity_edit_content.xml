@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/pbg"
+    tools:context="test.bwei.com.platform.activity.EditContentActivity">
+<include layout="@layout/publishheader"></include>
+    <RelativeLayout
+        android:id="@+id/pbr1"
+        android:layout_width="@dimen/x250"
+        android:layout_height="@dimen/x250"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x200"
+        android:background="@drawable/yellowround"
+        >
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/x30"
+            android:src="@mipmap/pdsxj" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView8"
+            android:layout_centerHorizontal="true"
+            android:text="视频" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pbr2"
+        android:layout_width="@dimen/x250"
+        android:layout_height="@dimen/x250"
+        android:layout_alignLeft="@+id/pbr1"
+        android:layout_alignStart="@+id/pbr1"
+        android:layout_below="@+id/pbr1"
+        android:layout_marginTop="@dimen/x70"
+        android:background="@drawable/yellowround"
+    >
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/x30"
+            android:src="@mipmap/pbdz" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView9"
+            android:layout_centerHorizontal="true"
+            android:text="段子" />
+    </RelativeLayout>
+</RelativeLayout>

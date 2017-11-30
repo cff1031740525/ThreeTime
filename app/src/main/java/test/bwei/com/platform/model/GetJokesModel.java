@@ -7,13 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import test.bwei.com.platform.Base.MyIntercepter;
 import test.bwei.com.platform.Base.PublicInterceptor;
 import test.bwei.com.platform.bean.UseJokeBean;
 import test.bwei.com.platform.common.Api;
@@ -39,7 +42,7 @@ public class GetJokesModel {
 
     }
     public void getJokes(String page) {
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new PublicInterceptor(context))
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new MyIntercepter())
                 .build();
         Retrofit retrofit = new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -49,11 +52,16 @@ public class GetJokesModel {
         Map<String, String> map = new HashMap<>();
         map.put("page", page);
         getJokes.getJokes(map)
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<JokeBean>() {
+                .subscribe(new Observer<JokeBean>() {
                     @Override
-                    public void accept(JokeBean jokeBean) throws Exception {
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(JokeBean jokeBean) {
                         if (jokeBean.code.equals("0")) {
                             UseJokeBean bean = null;
                             for (JokeBean.DataBean datum : jokeBean.data) {
@@ -65,7 +73,7 @@ public class GetJokesModel {
                                 bean.createtime = datum.createTime;
                                 bean.image = datum.user.icon;
                                 bean.nickname = datum.user.nickname;
-                                bean.uid = datum.user.uid;
+                                bean.imgurls=datum.imgUrls;
                                 bean.jid = datum.jid;
                                 list.add(bean);
                                 bean = null;
@@ -74,6 +82,20 @@ public class GetJokesModel {
                         } else {
                             getUseJokes.Fail("请求失败,请刷新重试");
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        try {
+                            throw (e);
+                        } catch (Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y90"
+    android:layout_alignParentTop="true"
+    android:background="@color/blue">
+
+    <TextView
+        android:id="@+id/duanzi_cancle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x20"
+        android:text="取消"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x35" />
+
+    <TextView
+        android:id="@+id/duanzi_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="发表文章"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x40" />
+
+    <TextView
+        android:id="@+id/duanzi_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x20"
+        android:text="发表"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x35" />
+</RelativeLayout>

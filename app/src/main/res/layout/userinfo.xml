@@ -168,12 +168,16 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-
             android:textSize="@dimen/y30" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/item_rlv"
+            android:layout_below="@id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
         <LinearLayout
             android:layout_marginTop="@dimen/x15"
             android:background="@color/under_line"
-            android:layout_below="@id/content"
+            android:layout_below="@id/item_rlv"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x2"></LinearLayout>
     </RelativeLayout>

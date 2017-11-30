@@ -17,5 +17,6 @@ public class UseJokeBean {
     public String praiseNum;
     public String shareNum;
     public int jid;
+    public String imgurls;
 
 }

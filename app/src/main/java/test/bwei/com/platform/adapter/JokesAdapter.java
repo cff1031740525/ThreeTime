@@ -1,15 +1,21 @@
 package test.bwei.com.platform.adapter;
 
+import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -35,7 +41,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
     public JokesAdapter(List<UseJokeBean> list, Context context) {
         this.list = list;
         this.context = context;
-
+        System.out.println("999999999999" + "");
     }
 
     @Override
@@ -48,8 +54,10 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
 
     @Override
     public void onBindViewHolder(final myViewHolder holder, final int position) {
-        if(map.get(position)==null){
-            map.put(position,true);
+
+
+        if (map.get(position) == null) {
+            map.put(position, true);
         }
         UseJokeBean useJokeBean = list.get(position);
         holder.icon.setImageURI(useJokeBean.image);
@@ -59,10 +67,26 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
         holder.share_count.setText(useJokeBean.shareNum);
         holder.love_count.setText(useJokeBean.praiseNum);
         holder.content.setText(useJokeBean.content);
+        if(!TextUtils.isEmpty(list.get(position).imgurls)){
+            holder.item_rlv.setVisibility(View.VISIBLE);
+            String[] split = list.get(position).imgurls.split("\\|");
+            JokeItemAdapter adapter=new JokeItemAdapter(context,split);
+            holder.item_rlv.setLayoutManager(new GridLayoutManager(context,3));
+            holder.item_rlv.setAdapter(adapter);
+        }else{
+            holder.item_rlv.setVisibility(View.GONE);
+        }
+        holder.user_love.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "love", Toast.LENGTH_SHORT).show();
+            }
+        });
         holder.ll_jia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(map.get(position)){
+                if (map.get(position)) {
+
                     holder.user_show.setImageResource(R.mipmap.item_jian);
                     AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_anmi);
                     set.setTarget(holder.user_show);
@@ -87,11 +111,11 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
                     AnimatorSet set4 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_tran);
                     set4.setTarget(holder.ll_love);
                     set4.start();
-                    holder.share_count.setText("3333");
-                    holder.comment_count.setText("3333");
-                    holder.love_count.setText("3333");
-                    map.put(position,false);
-                }else{
+                     holder.share_count.setText("3333");
+                      holder.comment_count.setText("3333");
+                   holder.love_count.setText("3333");
+                    map.put(position, false);
+                } else {
                     holder.user_show.setImageResource(R.mipmap.item_jia);
                     AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_anmi_second);
                     set.setTarget(holder.user_show);
@@ -116,10 +140,12 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
                     AnimatorSet set4 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_tran_second);
                     set4.setTarget(holder.ll_love);
                     set4.start();
-                    holder.share_count.setText(" ");
-                    holder.comment_count.setText(" ");
-                    holder.love_count.setText(" ");
-                    map.put(position,true);
+
+                   holder.share_count.setText(" ");
+                     holder.comment_count.setText(" ");
+                      holder.love_count.setText(" ");
+
+                    map.put(position, true);
                 }
 
             }
@@ -128,6 +154,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
 
     @Override
     public int getItemCount() {
+
         return list.size();
     }
 
@@ -147,6 +174,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
         private final LinearLayout ll_share;
         private final LinearLayout ll_love;
         private final LinearLayout ll_comment;
+        private final RecyclerView item_rlv;
 
         public myViewHolder(View itemView) {
             super(itemView);
@@ -165,7 +193,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
             ll_share = itemView.findViewById(R.id.ll_share);
             ll_love = itemView.findViewById(R.id.ll_love);
             ll_comment = itemView.findViewById(R.id.ll_comment);
-
+            item_rlv = itemView.findViewById(R.id.item_rlv);
         }
     }
 

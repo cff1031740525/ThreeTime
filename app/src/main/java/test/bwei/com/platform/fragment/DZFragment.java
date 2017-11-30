@@ -47,10 +47,7 @@ public class DZFragment extends Fragment implements DZView {
         rlv = v.findViewById(R.id.dzrlv);
         rlv.setPullRefreshEnabled(true);
         rlv.setLoadingMoreEnabled(true);
-
-
         initData();
-
     }
 
     private void initData() {
@@ -96,4 +93,10 @@ public class DZFragment extends Fragment implements DZView {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        page=1;
+        getJokesPresenter.getJokesContent(page + "");
+    }
 }
