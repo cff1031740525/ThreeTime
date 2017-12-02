@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,8 @@ public class DuanZiActivity extends BaseActivity<PublishPresenter> implements Pu
     private ImageView publish_image;
     private ArrayList<String> path = new ArrayList<>();
     private List<String> pathList;
+    private RelativeLayout rela;
+    private ProgressBar pb;
 
     @Override
     public int getLayoutId() {
@@ -44,6 +48,8 @@ public class DuanZiActivity extends BaseActivity<PublishPresenter> implements Pu
         cancle = findViewById(R.id.duanzi_cancle);
         publish = findViewById(R.id.duanzi_publish);
         publish_image = findViewById(R.id.publish_image);
+        rela = findViewById(R.id.pj_r1);
+        pb = findViewById(R.id.pb);
         content = findViewById(R.id.publish_content);
         cancle.setOnClickListener(this);
         publish.setOnClickListener(this);
@@ -63,22 +69,24 @@ public class DuanZiActivity extends BaseActivity<PublishPresenter> implements Pu
 
     @Override
     public void Success(String msg) {
+        rela.setVisibility(View.GONE);
         Toast.makeText(DuanZiActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
         finish();
     }
 
     @Override
     public void Fail(String msg) {
-            if(msg.equals("2")){
-                sp.edit().clear().commit();
-                Intent intent=new Intent(DuanZiActivity.this,ThreeActionActivity.class);
+        rela.setVisibility(View.GONE);
+        if (msg.equals("2")) {
+            sp.edit().clear().commit();
+            Intent intent = new Intent(DuanZiActivity.this, ThreeActionActivity.class);
 
-                startActivity(intent);
-                Toast.makeText(DuanZiActivity.this,"token超时" ,Toast.LENGTH_SHORT).show();
-                finish();
-            }else{
-                Toast.makeText(DuanZiActivity.this,msg,Toast.LENGTH_SHORT).show();
-            }
+            startActivity(intent);
+            Toast.makeText(DuanZiActivity.this, "token超时", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(DuanZiActivity.this, msg, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -88,6 +96,7 @@ public class DuanZiActivity extends BaseActivity<PublishPresenter> implements Pu
                 finish();
                 break;
             case R.id.duanzi_publish:
+                rela.setVisibility(View.VISIBLE);
                 int uid = sp.getInt("uid", -100);
                 if (uid > 0) {
                     String s = content.getText().toString();

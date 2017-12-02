@@ -94,7 +94,7 @@ public class TJFragment extends Fragment {
             if (position == 0) {
                 return "热门";
             } else {
-                return "推荐";
+                return "关注";
             }
 
         }

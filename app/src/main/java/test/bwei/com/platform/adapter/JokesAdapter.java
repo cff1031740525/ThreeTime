@@ -41,8 +41,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
     public JokesAdapter(List<UseJokeBean> list, Context context) {
         this.list = list;
         this.context = context;
-        System.out.println("999999999999" + "");
-    }
+}
 
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -54,7 +53,6 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
 
     @Override
     public void onBindViewHolder(final myViewHolder holder, final int position) {
-
 
         if (map.get(position) == null) {
             map.put(position, true);
@@ -79,14 +77,47 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
         holder.user_love.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "love", Toast.LENGTH_SHORT).show();
+                userOperation.LoveOperation(position);
+                holder.share_count.setText(" ");
+                holder.comment_count.setText(" ");
+                holder.love_count.setText(" ");
+                holder.user_show.setImageResource(R.mipmap.item_jia);
+                AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_anmi_second);
+                set.setTarget(holder.user_show);
+                set.start();
+
+                AnimatorSet set1 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.comment_anim_second);
+                set1.setTarget(holder.user_love);
+                set1.start();
+                AnimatorSet set5 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.comment_anim_second);
+                set5.setTarget(holder.user_comment);
+                set5.start();
+                AnimatorSet set6 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.comment_anim_second);
+                set6.setTarget(holder.user_share);
+                set6.start();
+
+                AnimatorSet set2 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.comment_tran_second);
+                set2.setTarget(holder.ll_comment);
+                set2.start();
+                AnimatorSet set3 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.share_tran_second);
+                set3.setTarget(holder.ll_share);
+                set3.start();
+                AnimatorSet set4 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_tran_second);
+                set4.setTarget(holder.ll_love);
+                set4.start();
+
+
+
+                map.put(position, true);
             }
         });
         holder.ll_jia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (map.get(position)) {
-
+                    holder.love_count.setText(list.get(position).praiseNum);
+                    holder.share_count.setText(list.get(position).shareNum);
+                    holder.comment_count.setText(list.get(position).commentNum);
                     holder.user_show.setImageResource(R.mipmap.item_jian);
                     AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_anmi);
                     set.setTarget(holder.user_show);
@@ -111,11 +142,11 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
                     AnimatorSet set4 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_tran);
                     set4.setTarget(holder.ll_love);
                     set4.start();
-                     holder.share_count.setText("3333");
-                      holder.comment_count.setText("3333");
-                   holder.love_count.setText("3333");
                     map.put(position, false);
                 } else {
+                    holder.share_count.setText(" ");
+                    holder.comment_count.setText(" ");
+                    holder.love_count.setText(" ");
                     holder.user_show.setImageResource(R.mipmap.item_jia);
                     AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_anmi_second);
                     set.setTarget(holder.user_show);
@@ -141,9 +172,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
                     set4.setTarget(holder.ll_love);
                     set4.start();
 
-                   holder.share_count.setText(" ");
-                     holder.comment_count.setText(" ");
-                      holder.love_count.setText(" ");
+
 
                     map.put(position, true);
                 }
@@ -204,12 +233,12 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
     }
 
     public interface UserOperation {
-        void CommentOperation();
+        void CommentOperation(int postion);
 
-        void LoveOperation();
+        void LoveOperation(int postion);
 
-        void ShareOperation();
+        void ShareOperation(int postion);
 
-        void ShowOperation();
+        void ShowOperation(int postion);
     }
 }

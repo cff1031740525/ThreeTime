@@ -6,6 +6,7 @@ import io.reactivex.Observable;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import test.bwei.com.platform.bean.BaseBean;
 import test.bwei.com.platform.jsonbean.JokeBean;
 import test.bwei.com.platform.common.Api;
 
@@ -20,4 +21,8 @@ public interface GetJokes {
     @POST(Api.GETJOKES)
     @FormUrlEncoded
     Observable<JokeBean> getJokes(@FieldMap Map<String,String> map);
+
+    @POST(Api.PRAISEJOKE)
+    @FormUrlEncoded
+    Observable<BaseBean> Praise(@FieldMap Map<String,String> map);
 }

@@ -9,4 +9,5 @@
     <color name="maincolor">#ffd200</color>
     <color name="hui">#999999</color>
     <color name="under_line">#EDEBED</color>
+    <color name="alpha">#80987654</color>
 </resources>
