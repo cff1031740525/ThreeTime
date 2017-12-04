@@ -16,13 +16,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hxe.platform.R;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import test.bwei.com.platform.Base.BaseActivity;
-import test.bwei.com.platform.R;
+
 import test.bwei.com.platform.presenter.LoginPresenter;
 
 import static android.Manifest.permission_group.SMS;

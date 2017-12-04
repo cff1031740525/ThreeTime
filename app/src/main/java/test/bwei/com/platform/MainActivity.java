@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.hxe.platform.R;
 
 import test.bwei.com.platform.Base.BaseActivity;
 import test.bwei.com.platform.Base.BasePresenter;

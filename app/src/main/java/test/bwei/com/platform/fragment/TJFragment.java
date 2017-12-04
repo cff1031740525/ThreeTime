@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.stx.xhb.xbanner.XBanner;
 
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 
 /**
  * Author:Chen

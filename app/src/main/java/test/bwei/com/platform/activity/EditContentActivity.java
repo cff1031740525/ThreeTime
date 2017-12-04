@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hxe.platform.R;
+
 import test.bwei.com.platform.Base.BaseActivity;
 import test.bwei.com.platform.Base.BasePresenter;
-import test.bwei.com.platform.R;
+
 import test.bwei.com.platform.presenter.PublishPresenter;
 import test.bwei.com.platform.view.PublishView;
 

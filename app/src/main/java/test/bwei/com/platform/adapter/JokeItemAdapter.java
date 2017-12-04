@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 
 /**
  * Author:Chen

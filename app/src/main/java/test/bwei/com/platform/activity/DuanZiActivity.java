@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hxe.platform.R;
 import com.yancy.imageselector.ImageConfig;
 import com.yancy.imageselector.ImageSelector;
 import com.yancy.imageselector.ImageSelectorActivity;
@@ -22,7 +23,7 @@ import java.util.List;
 
 import test.bwei.com.platform.Base.BaseActivity;
 import test.bwei.com.platform.GlideLoader;
-import test.bwei.com.platform.R;
+
 import test.bwei.com.platform.presenter.PublishPresenter;
 import test.bwei.com.platform.view.PublishView;
 

@@ -11,7 +11,7 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 
 public class StartActivity extends AppCompatActivity {
     private Timer timer;

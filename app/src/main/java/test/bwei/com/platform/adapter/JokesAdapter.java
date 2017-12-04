@@ -17,13 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 import test.bwei.com.platform.bean.UseJokeBean;
 
 /**
@@ -58,6 +59,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
             map.put(position, true);
         }
         UseJokeBean useJokeBean = list.get(position);
+
         holder.icon.setImageURI(useJokeBean.image);
         holder.nickname.setText(useJokeBean.nickname);
         holder.createtime.setText(useJokeBean.createtime);

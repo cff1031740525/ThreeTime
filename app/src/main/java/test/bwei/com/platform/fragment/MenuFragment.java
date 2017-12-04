@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 
 /**
  * Author:Chen

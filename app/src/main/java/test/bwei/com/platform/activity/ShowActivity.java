@@ -3,7 +3,7 @@ package test.bwei.com.platform.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 
 public class ShowActivity extends AppCompatActivity {
 

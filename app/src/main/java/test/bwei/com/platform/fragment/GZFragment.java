@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 
 /**
  * Author:Chen

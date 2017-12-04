@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import test.bwei.com.platform.Base.BaseActivity;
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 import test.bwei.com.platform.jsonbean.loginbean;
 import test.bwei.com.platform.presenter.LoginPresenter;
 import test.bwei.com.platform.view.LoginView;

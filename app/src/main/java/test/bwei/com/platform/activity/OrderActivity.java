@@ -10,7 +10,7 @@ import android.util.LruCache;
 import android.view.View;
 import android.widget.ImageView;
 
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 import test.bwei.com.platform.fragment.MyFragment;
 import test.bwei.com.platform.fragment.OrderFragment;
 

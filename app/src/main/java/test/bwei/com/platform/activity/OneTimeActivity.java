@@ -23,7 +23,7 @@ import java.util.TimerTask;
 
 import test.bwei.com.platform.Base.BaseActivity;
 import test.bwei.com.platform.MainActivity;
-import test.bwei.com.platform.R;
+import com.hxe.platform.R;
 
 import test.bwei.com.platform.fragment.DZFragment;
 import test.bwei.com.platform.fragment.MenuFragment;
