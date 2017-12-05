@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.hxe.platform.R;
 
 import test.bwei.com.platform.Base.BaseActivity;
@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
                     img.setVisibility(View.VISIBLE);
                     gif.setVisibility(View.VISIBLE);
                     Glide.with(MainActivity.this).load(R.mipmap.jiesuo).into(img);
-                    Glide.with(MainActivity.this).load(R.mipmap .spgif).into(new GlideDrawableImageViewTarget(gif, 1));
+              //      Glide.with(MainActivity.this).load(R.mipmap .spgif).into(new GlideDrawableImageViewTarget(gif, 1));
                 } else {
                     gif.setVisibility(View.GONE);
                     img.setVisibility(View.GONE);

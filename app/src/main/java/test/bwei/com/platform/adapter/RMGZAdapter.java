@@ -1,6 +1,8 @@
 package test.bwei.com.platform.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,13 +14,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dou361.ijkplayer.listener.OnShowThumbnailListener;
+import com.dou361.ijkplayer.widget.IjkVideoView;
+import com.dou361.ijkplayer.widget.PlayStateParams;
+import com.dou361.ijkplayer.widget.PlayerView;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.hxe.platform.R;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.hxe.platform.R;
 import test.bwei.com.platform.jsonbean.VedioBean;
 
 /**
@@ -29,6 +35,8 @@ import test.bwei.com.platform.jsonbean.VedioBean;
  */
 
 public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder> {
+
+
 
     private Context context;
     private List<VedioBean.DataBean> data;
@@ -47,16 +55,39 @@ public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(myViewHolder holder, int position) {
-        VedioBean.DataBean dataBean = data.get(position);
+    public void onBindViewHolder(final myViewHolder holder, int position) {
+        final VedioBean.DataBean dataBean = data.get(position);
         Glide.with(context).load(dataBean.user.icon).into(holder.rmHeader);
-        Glide.with(context).load(dataBean.cover).into(holder.imgCover);
-        holder.rmNickname.setText(dataBean.user.nickname+"");
+        holder.rmNickname.setText(dataBean.user.nickname + "");
         holder.rmCreatetime.setText(dataBean.createTime);
-        if(TextUtils.isEmpty(dataBean.comments+"")){
+        String videoUrl = dataBean.videoUrl;
+
+        String[] split = videoUrl.split(".cn/");
+        String url=null;
+        if(split.length>=2){
+            url="http://120.27.23.105/"+ split[1];
+        }
+
+        System.out.println(url+"777777777777777");
+        View inflate = View.inflate(context, R.layout.simple_player_view_player, holder.rlvedios);
+        PlayerView pv=new PlayerView((Activity) context,inflate)
+                .setTitle(dataBean.workDesc)
+                .setScaleType(PlayStateParams.fitparent)
+                .hideMenu(true)
+                .showThumbnail(new OnShowThumbnailListener() {
+                    @Override
+                    public void onShowThumbnail(ImageView ivThumbnail) {
+                        Glide.with(context).load(dataBean.cover).into(ivThumbnail);
+                        
+                    }
+                })
+                .forbidTouch(false)
+                .setPlaySource(url)
+                .startPlay();
+        if (TextUtils.isEmpty(dataBean.comments + "")) {
             holder.rm_description.setText("  ");
         }
-        holder.rm_description.setText(dataBean.workDesc+"");
+        holder.rm_description.setText(dataBean.workDesc + "");
 
     }
 
@@ -101,10 +132,12 @@ public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder> 
         RelativeLayout r1;
         @BindView(R.id.relativeLayout7)
         RelativeLayout relativeLayout7;
-        @BindView(R.id.img_cover)
-        ImageView imgCover;
         @BindView(R.id.rm_description)
         TextView rm_description;
+        @BindView(R.id.detail_item)
+        LinearLayout detailItem;
+        @BindView(R.id.rlvedios)
+        RelativeLayout rlvedios;
         public myViewHolder(View itemView) {
             super(itemView);
 

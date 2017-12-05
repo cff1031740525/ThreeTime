@@ -9,6 +9,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hxe.platform.R;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
+
+import java.util.List;
 
 import test.bwei.com.platform.Base.BaseActivity;
 import test.bwei.com.platform.Base.BasePresenter;
@@ -66,13 +72,36 @@ public class EditContentActivity extends BaseActivity<PublishPresenter> implemen
                 finish();
                 break;
             case R.id.pbr1:
-
+                //TODO 上传视屏的点击事件
+                PictureSelector.create(this)
+                        .openCamera(PictureMimeType.ofVideo())
+                        .forResult(PictureConfig.CHOOSE_REQUEST)
+                ;
                 break;
             case R.id.pbr2:
                 Intent intent = new Intent(EditContentActivity.this, DuanZiActivity.class);
                 startActivity(intent);
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+                    LocalMedia localMedia = selectList.get(0);
+                    String path = localMedia.getPath();
+                    System.out.println(path+"patthi++++++");
+                    Intent intent = new Intent(this, PublishVediosActivity.class);
+                    intent.putExtra("vediopath",path);
+                    startActivity(intent);
+                    finish();
+                    break;
+            }
         }
     }
 }

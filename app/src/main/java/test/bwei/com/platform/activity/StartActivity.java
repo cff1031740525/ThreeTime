@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.Timer;
@@ -25,8 +25,8 @@ public class StartActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         ImageView img=findViewById(R.id.imgs);
         Glide.with(this)
-                .load(R.mipmap  .spgif)
-                .into(new GlideDrawableImageViewTarget(img,1));
+                .load(R.mipmap  .spgif);
+            //    .into(new GlideDrawableImageViewTarget(img,1));
 
 
     }

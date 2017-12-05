@@ -19,6 +19,7 @@ public class Api {
     public static final String COMMENTJOKE = "quarter/commentJoke";
     public static final String PRAISEJOKE = "quarter/jokePraise";
     public static final String GETVIDEOS = "quarter/getVideos";
+    public static final String PVEDIO = "quarter/publishVideo";
 
 
 }
