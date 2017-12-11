@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hxe.platform.R;
+
 /**
  * Author:Chen
  * E-mail:1031740525@qq.com
@@ -15,13 +17,19 @@ import android.widget.TextView;
  * Description:
  */
 
-public class SPFragment extends Fragment{
+public class SPFragment extends Fragment {
+
+    private View view;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView tv=new TextView(getActivity());
-        tv.setText("2");
-        return tv;
+        if (view == null) {
+            view = LayoutInflater.from(getActivity()).inflate(R.layout.spfragment, null);
+            view.findViewById(R.id.staggertab);
+        }
+
+        return view;
     }
 
     @Override

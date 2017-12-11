@@ -89,7 +89,7 @@
             android:value="dfdce85ac0f749b107a5aac1400ec8fe" />
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="c91bde22661acbe3c97ebed1d036fb40"></meta-data>
+            android:value="c91bde22661acbe3c97ebed1d036fb40" />
 
         <activity android:name="test.bwei.com.platform.MainActivity" />
         <activity android:name="test.bwei.com.platform.activity.LandRActivity" />
@@ -122,7 +122,8 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name="test.bwei.com.platform.activity.PublishVediosActivity"></activity>
+        <activity android:name="test.bwei.com.platform.activity.PublishVediosActivity" />
+        <activity android:name="test.bwei.com.platform.activity.SetActivity"></activity>
     </application>
 
 </manifest>

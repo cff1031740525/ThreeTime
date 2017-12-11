@@ -2,6 +2,7 @@ package test.bwei.com.platform.model;
 
 import android.content.Context;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,12 +13,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import test.bwei.com.platform.Base.CacheInterceptor;
 import test.bwei.com.platform.Base.MyIntercepter;
 import test.bwei.com.platform.Base.PublicInterceptor;
+import test.bwei.com.platform.application;
 import test.bwei.com.platform.bean.UseJokeBean;
 import test.bwei.com.platform.common.Api;
 import test.bwei.com.platform.jsonbean.JokeBean;
@@ -32,26 +36,32 @@ import test.bwei.com.platform.service.GetJokes;
 
 public class GetJokesModel {
     private Context context;
-    private List<UseJokeBean> list ;
+    private List<UseJokeBean> list;
+    String cacheFile = application.getContext().getCacheDir()+"/http";
+    Cache cache = new Cache(new File(cacheFile), 10 * 1024 * 1024);
     public GetJokesModel(Context context) {
         this.context = context;
-        list=new ArrayList<>();
+        list = new ArrayList<>();
     }
-    public void loadMore(String page){
+
+    public void loadMore(String page) {
         getJokes(page);
 
     }
+
     public void getJokes(String page) {
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new MyIntercepter())
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addNetworkInterceptor(CacheInterceptor.REWRITE_RESPONSE_INTERCEPTOR)
+                .addNetworkInterceptor(new MyIntercepter())
+                .addInterceptor(CacheInterceptor.REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
+                .cache(cache)
                 .build();
         Retrofit retrofit = new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .baseUrl(Api.BASEURL).build();
         final GetJokes getJokes = retrofit.create(GetJokes.class);
-        Map<String, String> map = new HashMap<>();
-        map.put("page", page);
-        getJokes.getJokes(map)
+        getJokes.getJokes(page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<JokeBean>() {
@@ -62,6 +72,8 @@ public class GetJokesModel {
 
                     @Override
                     public void onNext(JokeBean jokeBean) {
+                        String msg = jokeBean.msg;
+                        System.out.println(msg+"msgmsg");
                         if (jokeBean.code.equals("0")) {
                             UseJokeBean bean = null;
                             for (JokeBean.DataBean datum : jokeBean.data) {
@@ -73,7 +85,7 @@ public class GetJokesModel {
                                 bean.createtime = datum.createTime;
                                 bean.image = datum.user.icon;
                                 bean.nickname = datum.user.nickname;
-                                bean.imgurls=datum.imgUrls;
+                                bean.imgurls = datum.imgUrls;
                                 bean.jid = datum.jid;
                                 list.add(bean);
                                 bean = null;
@@ -98,9 +110,11 @@ public class GetJokesModel {
 
                     }
                 });
+
+
     }
 
-  private GetUseJokes getUseJokes;
+    private GetUseJokes getUseJokes;
 
     public void setGetUseJokes(GetUseJokes getUseJokes) {
         this.getUseJokes = getUseJokes;
@@ -108,6 +122,7 @@ public class GetJokesModel {
 
     public interface GetUseJokes {
         void Success(List<UseJokeBean> list);
+
         void Fail(String msg);
     }
 }

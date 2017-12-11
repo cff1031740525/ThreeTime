@@ -86,6 +86,14 @@ public class MyIntercepter implements Interceptor {
                 request = request.newBuilder().post(builder.build()).build();
 
             }
+        } else if ("GET".equals(request.method())) {
+            HttpUrl httpUrl = request.url()
+                    .newBuilder()
+                    .addQueryParameter("token",token)
+                    .addQueryParameter("source","android")
+                    .addQueryParameter("appVersion", "101")
+                    .build();
+            request = request.newBuilder().url(httpUrl).build();
         }
 
         //System.out.println("开始添加公共参数44444444444" + chain.proceed(request).body().string());

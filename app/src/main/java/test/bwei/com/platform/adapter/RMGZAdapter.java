@@ -21,7 +21,9 @@ import com.dou361.ijkplayer.widget.PlayerView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hxe.platform.R;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,18 +39,22 @@ import test.bwei.com.platform.jsonbean.VedioBean;
 public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder> {
 
 
-
     private Context context;
     private List<VedioBean.DataBean> data;
-
+    private Map<Integer, Boolean> statusMap;
 
     public RMGZAdapter(Context context, List<VedioBean.DataBean> data) {
         this.context = context;
         this.data = data;
+        statusMap = new HashMap<>();
+        for (int i = 0; i < data.size(); i++) {
+            statusMap.put(i, true);
+        }
     }
 
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(context).inflate(R.layout.rmgz_adapter, null);
         myViewHolder myViewHolder = new myViewHolder(view);
         return myViewHolder;
@@ -56,21 +62,30 @@ public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder> 
 
     @Override
     public void onBindViewHolder(final myViewHolder holder, int position) {
+
+        for (int i = 0; i < data.size(); i++) {
+            if (statusMap.get(i) == null) {
+                statusMap.put(i, true);
+            } else if (statusMap.get(i)) {
+                statusMap.put(i, true);
+            } else {
+                statusMap.put(i, false);
+            }
+        }
+        if(statusMap.get(position)){
         final VedioBean.DataBean dataBean = data.get(position);
         Glide.with(context).load(dataBean.user.icon).into(holder.rmHeader);
         holder.rmNickname.setText(dataBean.user.nickname + "");
         holder.rmCreatetime.setText(dataBean.createTime);
         String videoUrl = dataBean.videoUrl;
-
         String[] split = videoUrl.split(".cn/");
-        String url=null;
-        if(split.length>=2){
-            url="http://120.27.23.105/"+ split[1];
+        String url = null;
+        if (split.length >= 2) {
+            url = "http://120.27.23.105/" + split[1];
         }
-
-        System.out.println(url+"777777777777777");
+        System.out.println(url + "777777777777777");
         View inflate = View.inflate(context, R.layout.simple_player_view_player, holder.rlvedios);
-        PlayerView pv=new PlayerView((Activity) context,inflate)
+        PlayerView pv = new PlayerView((Activity) context, inflate)
                 .setTitle(dataBean.workDesc)
                 .setScaleType(PlayStateParams.fitparent)
                 .hideMenu(true)
@@ -78,7 +93,7 @@ public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder> 
                     @Override
                     public void onShowThumbnail(ImageView ivThumbnail) {
                         Glide.with(context).load(dataBean.cover).into(ivThumbnail);
-                        
+
                     }
                 })
                 .forbidTouch(false)
@@ -88,7 +103,10 @@ public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder> 
             holder.rm_description.setText("  ");
         }
         holder.rm_description.setText(dataBean.workDesc + "");
-
+        statusMap.put(position,false);
+        }else{
+            return;
+        }
     }
 
     @Override
@@ -138,6 +156,7 @@ public class RMGZAdapter extends RecyclerView.Adapter<RMGZAdapter.myViewHolder> 
         LinearLayout detailItem;
         @BindView(R.id.rlvedios)
         RelativeLayout rlvedios;
+
         public myViewHolder(View itemView) {
             super(itemView);
 

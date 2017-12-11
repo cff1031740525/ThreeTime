@@ -54,12 +54,21 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
 
     @Override
     public void onBindViewHolder(final myViewHolder holder, final int position) {
+        for (int i = 0; i < list.size(); i++) {
+            if (map.get(i) == null) {
+                map.put(i, true);
+            } else if (map.get(i)) {
+                map.put(i, true);
+            } else {
+                map.put(i, false);
+            }
+        }
+        if(map.get(position)){
 
-        if (map.get(position) == null) {
-            map.put(position, true);
+        }else{
+
         }
         UseJokeBean useJokeBean = list.get(position);
-
         holder.icon.setImageURI(useJokeBean.image);
         holder.nickname.setText(useJokeBean.nickname);
         holder.createtime.setText(useJokeBean.createtime);
@@ -79,6 +88,7 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
         holder.user_love.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 userOperation.LoveOperation(position);
                 holder.share_count.setText(" ");
                 holder.comment_count.setText(" ");
@@ -173,9 +183,6 @@ public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.myViewHolder
                     AnimatorSet set4 = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.love_tran_second);
                     set4.setTarget(holder.ll_love);
                     set4.start();
-
-
-
                     map.put(position, true);
                 }
 
